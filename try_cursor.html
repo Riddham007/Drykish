@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+<link rel="stylesheet" href="css/style_cursor.scss">
+</head>
+<style>
+</style>
+
+<body>
+    <h1>The html and CSS on this pen is unimportant to the function</h1>
+    <p>The cursor will turn red on <a href="#">Links</a> or elements with the <code>cursor: pointer</code> style <span
+            class="pointerspan">like this text</span>, or if the element contains the class <code>button</code> <span
+            class="button">in</span> <span class="abutton">any</span> <span
+            class="thewordbuttonisinthisclass">sense</span>, of course <button>Buttons</button> are supported.</p>
+    <p>Click events work through the cursor of course, using <code>pointer-events: none</code> <span class="crosshair">I
+            don't see any use to incorporate any other cursor options, but I am open to forgotten action criterea</span>
+    </p>
+    <p>JavaScript to add this
+        <code>document.body.innerHTML += '&lt;script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;&lt;script src="//codepen.io/OfficialAntarctica/pen/dGKwaw.js" type="text/javascript"&gt;&lt;/script&gt;';</code>,
+        use the Styler plugin.</p>
+         
+        <script>
+        $("body").append('<div class="cursor"></div>');
+$("html").append('<style>html, body, .msty_notcur {cursor:none !important;}.cursor {z-index:10000000000000; position: fixed;background-color:rgba(255,255,255,0.1);border: 1px solid rgba(0,0,0,0.2);width:25px;height:25px;border-radius:100%;transform:translate(-50%,-50%);top:0px;left:0px;pointer-events:none;} .overlink {background-color:rgba(255,100,100,0.25) !important;border: 1px solid rgba(100,0,0,0.25) !important;} .overtext {background-color:rgba(100,100,255,0.25) !important;border: 1px solid rgba(0,0,100,0.25) !important;}</style>');
+var scrollY = 0, scrollX = 0;
+$(document).mousemove(function(e){
+   $(".cursor").css("top",e.pageY - scrollY + "px").css("left",e.pageX - scrollX + "px");
+});
+$(document).scroll(function(e){
+   scrollY = $(window).scrollTop();
+   scrollX = $(window).scrollLeft();
+});
+setInterval(function(){scroll = $(window).scrollTop();}, 1000);
+$("*").hover(function(e){
+   var index = -1;
+   try {
+      index = $(this).attr("class").toLowerCase().indexOf("button");
+      if (index == -1) {
+         index = $(this).attr("class").toLowerCase().indexOf("link");
+      }
+   }
+   catch(e) {
+      index = -1;
+   }
+   if($(this).css("cursor") == "pointer" || $(this).get(0).tagName == "A" || $(this).get(0).tagName == "BUTTON" || $(this).hasClass("msty_cur") || index > -1) {
+      $(this).addClass("msty_cur");
+      $(this).css("cursor","none");
+      $(".cursor").addClass("overlink");
+   }
+   if($(this).css("cursor") != "none") {
+      $(this).addClass("msty_notcur")
+   }
+}, function(e){
+   $(this).css("cursor","none");
+   $(".cursor").removeClass("overlink");
+});
+        </script>
+</body>
+
+</html>

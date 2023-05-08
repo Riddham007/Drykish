@@ -1,0 +1,72 @@
+<html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+    </head>
+    <style>
+    *{
+        margin:0;
+        padding: 0;
+    }
+    body{
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .content{
+        height: 600px;
+        background-color: rgb(199, 199, 199);
+    }
+    .about{
+        max-width:800px;
+        margin:0 auto;
+        padding: 100px 0px;
+        transform-style: preserve-3d;
+        transform: perspective(800px);
+    }
+    .about h2{
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 50px;
+    }
+    .about h2, .about p{
+        transition: all 0.5s ease;
+
+    }
+    .about.hidden h2{
+        opacity:1;
+        transform:translate3d(0,0,400px) rotateY(-40deg);
+    }
+    .about.hidden p{
+        opacity:1;
+        transform:translate3d(0,0,400px) rotateY(-40deg);
+    }
+
+    </style>
+     <body>
+        <div class="content"> </div>
+        <div class="about hidden">
+            <h2>header</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo dolor, similique ea molestiae earum quas 
+               sint accusantium itaque magnam laborum laboriosam, expedita qui nihil dicta soluta exercitationem quos
+               iste. Quam.</p>
+        </div>
+       
+        <div class="content"></div>
+
+        <script>
+            $(window).scroll(function() {
+                  $(".about").toggleClass("hidden");
+            });
+        //  (function(){
+        //    var aboutEl= $('div.about'),
+        //        aboutEloffset=aboutEl.offset().top/2,
+        //        documentEl= $(document);
+
+        //     documentEl.on('scroll',function(){
+        //          if(documentEl.scrollTop() >aboutEloffset &&  aboutEl.hasClass('hidden'))aboutEl.removeClass('hidden');
+        //     });
+        //  })();
+        </script>
+
+    </body>
+</html>
